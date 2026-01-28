@@ -1,0 +1,28 @@
+export("BEAM", "BEGM", "BEHM", "BEMD", "BEMO",
+       "dBEAM", "dBEGM", "dBEHM", "dBEMD", "dBEMO",
+       "dIGAM", "dIGGM", "dIGHM", "dIGMD", "dIGMO", "dRBE", "dRBP",
+       "dRGA", "dRIG", "fit.RBE", "fit.RBP", "fit.RGA", "fit.RIG",
+       "IGAM", "IGGM", "IGHM", "IGMD", "IGMO", "pBEAM",
+       "pBEGM", "pBEHM", "pBEMD", "pBEMO", "pIGAM", "pIGGM", "pIGHM",
+       "pIGMD", "pIGMO", "pRBE", "pRBP", "pRGA", "pRIG", 
+       "qBEAM", "qBEGM", "qBEHM", "qBEMD", "qBEMO", "qIGAM", "qIGGM",
+       "qIGHM", "qIGMD", "qIGMO", "qRBE", "qRBP", "qRGA", "qRIG",
+       "rBEAM", "rBEGM", "rBEHM", "rBEMD", "rBEMO",
+       "rIGAM", "rIGGM", "rIGHM", "rIGMD", "rIGMO", "rRBE", "rRBP",
+       "rRGA", "rRIG", "AIC.rregm", "BIC.rregm", "coef.rregm",
+	"logLik.rregm", "print.rregm", "res", "summary.rregm")
+S3method(AIC, rregm)
+S3method(BIC, rregm)
+S3method(coef, rregm)
+S3method(logLik, rregm)
+S3method(print, rregm)
+S3method(summary, rregm)
+importFrom("stats", "AIC", "BIC", "coef", "dbeta", "dgamma", "lm", 
+	"logLik", "model.frame", "model.matrix", "nlminb", "optim",
+	"pbeta", "pgamma", "pnorm", "qbeta", "qgamma", "qnorm", "runif",
+	"plogis")
+importFrom("gamlss.dist", "checklink", "GA")
+importFrom("gamlss", "gamlss")
+importFrom("invgamma", "dinvgamma", "pinvgamma", "qinvgamma", "rinvgamma")
+importFrom("extraDistr", "dbetapr", "pbetapr", "qbetapr", "rbetapr")
+importFrom("pracma", "hessian")

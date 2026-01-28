@@ -1,0 +1,25 @@
+Package: rregm
+Type: Package
+Title: Reparameterized Regression Models
+Version: 1.0
+Authors@R: c(person("Diego", "Gallardo", role = c("aut","cre"), email = "dgallardo@ubiobio.cl"),
+	person("Marcelo", "Bourguignon", role = "aut", email = "m.p.bourguignon@gmail.com"),
+	person("Marcia","Brandao",role="aut", email="mbrandao07@gmail.com"))
+Maintainer: Diego Gallardo <dgallardo@ubiobio.cl>
+Description: Provides estimation and data generation tools for several new regression models,
+             including the gamma, beta, inverse gamma and beta prime distributions. These models can be
+             parameterized based on the mean, median, mode, geometric mean and harmonic mean, as 
+             specified by the user.  
+             For details, see Bourguignon and Gallardo (2025a) <doi:10.1016/j.chemolab.2025.105382> and
+             Bourguignon and Gallardo (2025b) <doi:10.1111/stan.70007>.
+Depends: R (>= 4.0.0), stats
+Imports: extraDistr, pracma, gamlss, gamlss.dist, invgamma
+License: GPL (>= 2)
+Encoding: UTF-8
+NeedsCompilation: no
+Packaged: 2026-01-25 02:44:06 UTC; Diego
+Author: Diego Gallardo [aut, cre],
+  Marcelo Bourguignon [aut],
+  Marcia Brandao [aut]
+Repository: CRAN
+Date/Publication: 2026-01-28 19:10:02 UTC
