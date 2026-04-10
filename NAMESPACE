@@ -10,7 +10,8 @@ export("BEAM", "BEGM", "BEHM", "BEMD", "BEMO",
        "rBEAM", "rBEGM", "rBEHM", "rBEMD", "rBEMO",
        "rIGAM", "rIGGM", "rIGHM", "rIGMD", "rIGMO", "rRBE", "rRBP",
        "rRGA", "rRIG", "AIC.rregm", "BIC.rregm", "coef.rregm",
-	"logLik.rregm", "print.rregm", "res", "summary.rregm")
+	"logLik.rregm", "print.rregm", "res", "summary.rregm",
+	"fit.RLN", "dRLN", "pRLN", "qRLN", "rRLN")
 S3method(AIC, rregm)
 S3method(BIC, rregm)
 S3method(coef, rregm)
@@ -20,8 +21,8 @@ S3method(summary, rregm)
 importFrom("stats", "AIC", "BIC", "coef", "dbeta", "dgamma", "lm", 
 	"logLik", "model.frame", "model.matrix", "nlminb", "optim",
 	"pbeta", "pgamma", "pnorm", "qbeta", "qgamma", "qnorm", "runif",
-	"plogis")
-importFrom("gamlss.dist", "checklink", "GA")
+	"plogis", "plnorm", "dlnorm", "rlnorm", "qlnorm")
+importFrom("gamlss.dist", "checklink", "GA","LOGNO")
 importFrom("gamlss", "gamlss")
 importFrom("invgamma", "dinvgamma", "pinvgamma", "qinvgamma", "rinvgamma")
 importFrom("extraDistr", "dbetapr", "pbetapr", "qbetapr", "rbetapr")

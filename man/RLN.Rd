@@ -1,23 +1,23 @@
-\name{RGA}
-\alias{fit.RGA}
-\alias{dRGA}
-\alias{pRGA}
-\alias{qRGA}
-\alias{rRGA}
+\name{RLN}
+\alias{fit.RLN}
+\alias{dRLN}
+\alias{pRLN}
+\alias{qRLN}
+\alias{rRLN}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Tools for a reparameterized gamma regression model
+Tools for a reparameterized log-normal regression model
 }
 \description{
-A set of functions related to the reparameterized gamma regression model based on different measures of 
+A set of functions related to the reparameterized log-normal regression model based on different measures of 
 central tendency: mean, median, mode, geometric mean or harmonic mean. 
 }
 \usage{
-fit.RGA(formula = formula(data), sigma.formula=~1, data, param="AM")
-dRGA(x, mu=1, sigma=1, param="AM", log=FALSE)
-pRGA(q, mu=1, sigma=1, param="AM", lower.tail = TRUE, log.p = FALSE) 
-qRGA(p, mu=1, sigma=1, param="AM", lower.tail = TRUE, log.p = FALSE)
-rRGA(n, mu=1, sigma=1, param="AM")
+fit.RLN(formula = formula(data), sigma.formula=~1, data, param="AM")
+dRLN(x, mu=1, sigma=1, param="AM", log=FALSE)
+pRLN(q, mu=1, sigma=1, param="AM", lower.tail = TRUE, log.p = FALSE) 
+qRLN(p, mu=1, sigma=1, param="AM", lower.tail = TRUE, log.p = FALSE)
+rRLN(n, mu=1, sigma=1, param="AM")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -51,20 +51,22 @@ harmonic mean.
 }
 }
 \details{
-The parameterization for the reparameterized gamma distribution is given by
+The parameterization for the reparameterized log-normal distribution is given by
 \deqn{
-f(x; \mu, \sigma) = \frac{(\delta/\mu)^{\delta + \tau}}{\Gamma(\delta + \tau)}x^{\delta+\tau-1}\textrm{e}^{-\delta x/\mu}, \quad y > 0,
+f(x; \mu, \sigma) = \dfrac{1}{x\,\phi\sqrt{2\pi}} 
+\exp\!\left[-\dfrac{(\ln x - \theta)^2}{2\phi^2}\right], \quad y > 0,
 }
-where \eqn{\delta=\delta(\sigma)=(\sqrt{\sigma(\sigma+4)}+\sigma)/2}, \eqn{\mu>0}, \eqn{\sigma > 0} and \eqn{\tau} 
+where \eqn{\theta=\log(\mu)-\tau \phi}, \eqn{\phi=\sqrt{\sigma}}, \eqn{\mu > 0}, \eqn{\sigma > 0} and \eqn{\tau} 
 is a constant. The following cases are highlighted:
 
-- param="AM": \eqn{\tau=0} and \eqn{\mu} represents the mean of the distribution.
+- param="MO": \eqn{\tau=-1} and \eqn{\mu} represents the mode or the harmonic mean of the distribution.
 
-- param="GM": \eqn{\tau=1/2} and \eqn{\mu} represents the geometric mean of the distribution.
+- param="HM": \eqn{\tau=-1/2} and \eqn{\mu} represents the harmonic mean of the distribution.
 
-- param="MD": \eqn{\tau=1/3} and \eqn{\mu} represents the median of the distribution.
+- param="MD" or "GM": \eqn{\tau=0} and \eqn{\mu} represents the median or the geometric mean of the distribution.
 
-- param="MO" or ="HM": \eqn{\tau=1} and \eqn{\mu} represents the mode or the harmonic mean of the distribution.
+- param="AM": \eqn{\tau=1/2} and \eqn{\mu} represents the mean of the distribution.
+
 
 Suppose the central tendency and the concentration parameter of \eqn{Y_i} satisfies the following functional relations
 \deqn{
@@ -80,30 +82,14 @@ Furthermore, we assume that the covariate matrices \eqn{\mathbf{X} = (\mathbf{x}
 
 For this model, the Pearson's residuals are given by
 \deqn{
-r_i=\frac{y_i-m_i}{s_i}, \quad i=1,\ldots,n,
+r_i=\frac{y_i-exp(\theta_i+\phi_i^2/2)}{\sqrt((\exp(\phi_i^2)-1)\exp(2*\theta_i+\phi_i^2))}, \quad i=1,\ldots,n.
 } 
-where 
-\deqn{
-m_i=\mu_i\left(1+\frac{\tau}{\xi(\sigma_i,\tau)}\right) \quad \mbox{and} \quad s_i=\frac{\mu}{\xi(\sigma_i,\tau)}\sqrt{\tau+\xi(\sigma_i,\tau)},
-}
-where \eqn{\xi(\sigma_i,\tau)=(\sqrt{\sigma_i(\sigma_i+4\tau)}+\sigma_i)/2}.
 On the other hand, the modified Pearson's residuals are given by
 \deqn{
-r_i^*=\frac{\log(y_i)-m_i^*}{s_i^*}, \quad i=1,\ldots,n,
+r_i^*=\frac{\log(y_i)-\theta_i}{\phi_i}, \quad i=1,\ldots,n,
 } 
-where 
-\deqn{
-m_i^*=\psi(\tau+\xi(\sigma_i,\tau))+\log \mu_i-\log \xi(\sigma_i,\tau)) \quad \mbox{and} \quad s_i^*=\sqrt{\psi'(\tau+\xi(\sigma_i,\tau))},
-}
-with \eqn{\psi(\cdot)} and \eqn{\psi'(\cdot)} denoting the digamma and trigamma functions, respectively.
-Finally, the quantile residuals are given by
-\deqn{
-r_i^q=\Phi^{-1}\left(\frac{\gamma(\tau+\xi(\sigma_i,\tau),\xi(\sigma_i,\tau) y_i/ \mu_i}{\Gamma(\tau+\xi(\sigma_i,\tau))}\right), \quad i=1,\ldots,n,
-} 
-where \eqn{\Phi^{-1}(\cdot)} denotes the inverse of the cumulative distribution function for the standard normal model and
-\eqn{\gamma(a,z) = \int_{0}^{z}t^{a-1}\textrm{e}^{-t}\textrm{d}t} is the lower incomplete gamma
-function and \eqn{\Gamma(\alpha) = \int_{0}^{\infty}\omega^{\alpha-1}\textrm{e}^{-\omega}\textrm{d} \omega} is the gamma function.
-dRGA gives the density, pRGA gives the distribution function, qRGA gives the quantile function, and rRGA generates random deviates from the gamma distribution with the specified
+which coincide with the quantile residuals.
+dRLN gives the density, pRLN gives the distribution function, qRLN gives the quantile function, and rRLN generates random deviates from the log-normal distribution with the specified
 parameterization. 
 }
 
@@ -135,11 +121,11 @@ Diego Gallardo and Marcelo Bourguignon.
 set.seed(2100)
 n=100; x1=rnorm(max(n)) ##drawing covariates, the same for mu and sigma
 mu=exp(0.5-0.4*x1); sigma=exp(-0.1+0.05*x1)
-y=rRGA(n, mu, sigma, param="MD") ## model parameterized in the median
+y=rRLN(n, mu, sigma, param="MD") ## model parameterized in the median
 data=list(y=y, x1=x1)
-aux.RGA=fit.RGA(y~x1, sigma.formula=~x1, data=data, param="MD")
-summary(aux.RGA)
-qqnorm(res(aux.RGA, type="mod.pearson"))
+aux.RLN=fit.RLN(y~x1, sigma.formula=~x1, data=data, param="MD")
+summary(aux.RLN)
+qqnorm(res(aux.RLN, type="mod.pearson"))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

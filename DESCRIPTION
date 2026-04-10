@@ -1,7 +1,7 @@
 Package: rregm
 Type: Package
 Title: Reparameterized Regression Models
-Version: 1.0
+Version: 1.1
 Authors@R: c(person("Diego", "Gallardo", role = c("aut","cre"), email = "dgallardo@ubiobio.cl"),
 	person("Marcelo", "Bourguignon", role = "aut", email = "m.p.bourguignon@gmail.com"),
 	person("Marcia","Brandao",role="aut", email="mbrandao07@gmail.com"))
@@ -17,9 +17,9 @@ Imports: extraDistr, pracma, gamlss, gamlss.dist, invgamma
 License: GPL (>= 2)
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2026-01-25 02:44:06 UTC; Diego
 Author: Diego Gallardo [aut, cre],
   Marcelo Bourguignon [aut],
   Marcia Brandao [aut]
+Packaged: 2026-04-10 23:23:20 UTC; Diego
 Repository: CRAN
-Date/Publication: 2026-01-28 19:10:02 UTC
+Date/Publication: 2026-04-10 23:50:02 UTC

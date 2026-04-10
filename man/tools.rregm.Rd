@@ -47,7 +47,8 @@ Supported regression models are:
 A complete summary for the coefficients extracted from a "rregm" object.  
 }
 \references{
-Gallardo and Bourguignon (2022).
+Bourguignon, M., Gallardo, D.I. (2025) A general and unified class of gamma regression models. 
+Chemometrics and Intelligent Laboratory Systems, 261, 105382.
 }
 \author{
 Diego Gallardo and Marcelo Bourguignon.}

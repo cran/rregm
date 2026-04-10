@@ -2,4 +2,5 @@ RBE         Tools for a reparameterized beta regression model.
 RBP         Tools for a reparameterized beta prime regression model.
 RGA         Tools for a reparameterized gamma regression model.
 RIG         Tools for a reparameterized inverse gamma regression model.
+RLN         Tools for a reparameterized log-normal regression model.
 tools.rregm Print a summary for a object of the "rregm" class.
