@@ -1,6 +1,8 @@
-RBE         Tools for a reparameterized beta regression model.
-RBP         Tools for a reparameterized beta prime regression model.
-RGA         Tools for a reparameterized gamma regression model.
-RIG         Tools for a reparameterized inverse gamma regression model.
-RLN         Tools for a reparameterized log-normal regression model.
-tools.rregm Print a summary for a object of the "rregm" class.
+RBE            Tools for a reparameterized beta regression model.
+RBE.predictive Predictive shrinkage estimation for reparameterized beta regression models.
+RBE.skovgaard  Likelihood ratio tests with Skovgaard adjustments for reparameterized beta regression models.
+RBP            Tools for a reparameterized beta prime regression model.
+RGA            Tools for a reparameterized gamma regression model.
+RIG            Tools for a reparameterized inverse gamma regression model.
+RLN            Tools for a reparameterized log-normal regression model.
+tools.rregm    Print a summary for a object of the "rregm" class.

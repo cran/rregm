@@ -11,19 +11,21 @@ export("BEAM", "BEGM", "BEHM", "BEMD", "BEMO",
        "rIGAM", "rIGGM", "rIGHM", "rIGMD", "rIGMO", "rRBE", "rRBP",
        "rRGA", "rRIG", "AIC.rregm", "BIC.rregm", "coef.rregm",
 	"logLik.rregm", "print.rregm", "res", "summary.rregm",
-	"fit.RLN", "dRLN", "pRLN", "qRLN", "rRLN")
+	"fit.RLN", "dRLN", "pRLN", "qRLN", "rRLN","RBE.predictive","RBE.skovgaard")
 S3method(AIC, rregm)
 S3method(BIC, rregm)
 S3method(coef, rregm)
 S3method(logLik, rregm)
 S3method(print, rregm)
+S3method(print, LRskov)
 S3method(summary, rregm)
 importFrom("stats", "AIC", "BIC", "coef", "dbeta", "dgamma", "lm", 
 	"logLik", "model.frame", "model.matrix", "nlminb", "optim",
 	"pbeta", "pgamma", "pnorm", "qbeta", "qgamma", "qnorm", "runif",
-	"plogis", "plnorm", "dlnorm", "rlnorm", "qlnorm")
+	"plogis", "plnorm", "dlnorm", "rlnorm", "qlnorm","pchisq","as.formula")
 importFrom("gamlss.dist", "checklink", "GA","LOGNO")
-importFrom("gamlss", "gamlss")
+importFrom("gamlss", "gamlss","stepGAICAll.A")
 importFrom("invgamma", "dinvgamma", "pinvgamma", "qinvgamma", "rinvgamma")
 importFrom("extraDistr", "dbetapr", "pbetapr", "qbetapr", "rbetapr")
 importFrom("pracma", "hessian")
+importFrom("utils", "capture.output")

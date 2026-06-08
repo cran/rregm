@@ -4,6 +4,7 @@
 \alias{coef.rregm}
 \alias{logLik.rregm}
 \alias{print.rregm}
+\alias{print.LRskov}
 \alias{res}
 \alias{summary.rregm}
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -19,6 +20,7 @@ res(object, type="pearson")
 \method{BIC}{rregm}(object, ...)
 \method{coef}{rregm}(object, ...)
 \method{logLik}{rregm}(object, ...)
+\method{print}{LRskov}(x, digits = max(3L, getOption("digits") - 3L), ...)
 \method{print}{rregm}(x, digits = max(3L, getOption("digits") - 3L), ...)
 \method{summary}{rregm}(object, ...)
 }
@@ -44,7 +46,7 @@ Supported regression models are:
 - reparametrized inverse gamma
 }
 \value{
-A complete summary for the coefficients extracted from a "rregm" object.  
+A complete summary for the coefficients extracted from a "rregm" or "LRskov" object.  
 }
 \references{
 Bourguignon, M., Gallardo, D.I. (2025) A general and unified class of gamma regression models. 

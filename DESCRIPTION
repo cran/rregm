@@ -1,10 +1,12 @@
 Package: rregm
 Type: Package
 Title: Reparameterized Regression Models
-Version: 1.1
+Version: 1.2
 Authors@R: c(person("Diego", "Gallardo", role = c("aut","cre"), email = "dgallardo@ubiobio.cl"),
 	person("Marcelo", "Bourguignon", role = "aut", email = "m.p.bourguignon@gmail.com"),
-	person("Marcia","Brandao",role="aut", email="mbrandao07@gmail.com"))
+	person("Marcia","Brandao",role="aut", email="mbrandao07@gmail.com"),
+	person("Tiago","Magalhaes",role="ctb", email="tiago.magalhaes@ufjf.br"),
+	person("Rafael","Izbicki",role="ctb", email="rizbicki@ufscar.br"))
 Maintainer: Diego Gallardo <dgallardo@ubiobio.cl>
 Description: Provides estimation and data generation tools for several new regression models,
              including the gamma, beta, inverse gamma and beta prime distributions. These models can be
@@ -12,14 +14,19 @@ Description: Provides estimation and data generation tools for several new regre
              specified by the user.  
              For details, see Bourguignon and Gallardo (2025a) <doi:10.1016/j.chemolab.2025.105382> and
              Bourguignon and Gallardo (2025b) <doi:10.1111/stan.70007>.
+             Additional tools are provided for higher-order likelihood inference through 
+             Skovgaard-adjusted likelihood ratio statistics and for predictive shrinkage 
+             estimation in reparameterized beta regression models.
 Depends: R (>= 4.0.0), stats
-Imports: extraDistr, pracma, gamlss, gamlss.dist, invgamma
+Imports: extraDistr, pracma, gamlss, gamlss.dist, invgamma, skewMLRM
 License: GPL (>= 2)
 Encoding: UTF-8
 NeedsCompilation: no
 Author: Diego Gallardo [aut, cre],
   Marcelo Bourguignon [aut],
-  Marcia Brandao [aut]
-Packaged: 2026-04-10 23:23:20 UTC; Diego
+  Marcia Brandao [aut],
+  Tiago Magalhaes [ctb],
+  Rafael Izbicki [ctb]
+Packaged: 2026-06-08 03:21:58 UTC; Diego
 Repository: CRAN
-Date/Publication: 2026-04-10 23:50:02 UTC
+Date/Publication: 2026-06-08 06:50:02 UTC
