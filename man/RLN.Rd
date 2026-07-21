@@ -1,5 +1,30 @@
 \name{RLN}
 \alias{fit.RLN}
+\alias{LNAM}
+\alias{LNGM}
+\alias{LNHM}
+\alias{LNMD}
+\alias{LNMO}
+\alias{dLNAM}
+\alias{dLNGM}
+\alias{dLNHM}
+\alias{dLNMD}
+\alias{dLNMO}
+\alias{pLNAM}
+\alias{pLNGM}
+\alias{pLNHM}
+\alias{pLNMD}
+\alias{pLNMO}
+\alias{qLNAM}
+\alias{qLNGM}
+\alias{qLNHM}
+\alias{qLNMD}
+\alias{qLNMO}
+\alias{rLNAM}
+\alias{rLNGM}
+\alias{rLNHM}
+\alias{rLNMD}
+\alias{rLNMO}
 \alias{dRLN}
 \alias{pRLN}
 \alias{qRLN}
@@ -13,14 +38,43 @@ A set of functions related to the reparameterized log-normal regression model ba
 central tendency: mean, median, mode, geometric mean or harmonic mean. 
 }
 \usage{
-fit.RLN(formula = formula(data), sigma.formula=~1, data, param="AM")
+LNAM(mu.link = "log", sigma.link = "log") 
+LNGM(mu.link = "log", sigma.link = "log") 
+LNHM(mu.link = "log", sigma.link = "log") 
+LNMD(mu.link = "log", sigma.link = "log") 
+LNMO(mu.link = "log", sigma.link = "log") 
+dLNAM(x, mu = 1, sigma = 1, log = FALSE) 
+dLNGM(x, mu = 1, sigma = 1, log = FALSE) 
+dLNHM(x, mu = 1, sigma = 1, log = FALSE) 
+dLNMD(x, mu = 1, sigma = 1, log = FALSE) 
+dLNMO(x, mu = 1, sigma = 1, log = FALSE) 
 dRLN(x, mu=1, sigma=1, param="AM", log=FALSE)
+fit.RLN(formula = formula(data), sigma.formula=~1, data, param="AM")
+pLNAM(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+pLNGM(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+pLNHM(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+pLNMD(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+pLNMO(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE)
 pRLN(q, mu=1, sigma=1, param="AM", lower.tail = TRUE, log.p = FALSE) 
+qLNAM(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+qLNGM(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+qLNHM(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+qLNMD(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+qLNMO(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
 qRLN(p, mu=1, sigma=1, param="AM", lower.tail = TRUE, log.p = FALSE)
+rLNAM(n, mu = 1, sigma = 1) 
+rLNGM(n, mu = 1, sigma = 1) 
+rLNHM(n, mu = 1, sigma = 1) 
+rLNMD(n, mu = 1, sigma = 1) 
+rLNMO(n, mu = 1, sigma = 1) 
 rRLN(n, mu=1, sigma=1, param="AM")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
+\item{mu.link}{the mu link function with default logit
+}
+\item{sigma.link}{the sigma link function with default log
+}
 \item{mu, sigma}{vector of parameter values
 }
   \item{formula}{
@@ -59,7 +113,7 @@ f(x; \mu, \sigma) = \dfrac{1}{x\,\phi\sqrt{2\pi}}
 where \eqn{\theta=\log(\mu)-\tau \phi}, \eqn{\phi=\sqrt{\sigma}}, \eqn{\mu > 0}, \eqn{\sigma > 0} and \eqn{\tau} 
 is a constant. The following cases are highlighted:
 
-- param="MO": \eqn{\tau=-1} and \eqn{\mu} represents the mode or the harmonic mean of the distribution.
+- param="MO": \eqn{\tau=-1} and \eqn{\mu} represents the mode of the distribution.
 
 - param="HM": \eqn{\tau=-1/2} and \eqn{\mu} represents the harmonic mean of the distribution.
 
@@ -94,7 +148,7 @@ parameterization.
 }
 
 \value{
-an object of class "rregm" is returned. The object returned for this functions is a list containing the following
+an object of class "rregm" is returned. The object returned for these functions is a list containing the following
 components:
 \item{estimate}{A matrix containing the estimates and standard errors.}
 \item{logLik}{the log-likelihood function evaluated at the corresponding estimators.}
@@ -105,7 +159,7 @@ components:
 \item{mod.pearson.res}{modified Pearson's residuals.}
 \item{quant.res}{quantile residuals.}
 \item{convergence}{logical. If convergence was attained.}
-\item{dist}{GA (the gamma distribution).}
+\item{dist}{LN (the log-normal distribution).}
 \item{param}{The specified parameterization.}
 \item{mu.x}{design matrix for mu.}
 \item{sigma.x}{design matrix for sigma.}
@@ -117,6 +171,12 @@ Chemometrics and Intelligent Laboratory Systems, 261, 105382.
 \author{
 Diego Gallardo and Marcelo Bourguignon.
 }
+\seealso{
+fit.RBE,
+fit.RGA,
+fit.RBP,
+fit.RIG,
+fit.RLL}
 \examples{
 set.seed(2100)
 n=100; x1=rnorm(max(n)) ##drawing covariates, the same for mu and sigma
@@ -126,6 +186,8 @@ data=list(y=y, x1=x1)
 aux.RLN=fit.RLN(y~x1, sigma.formula=~x1, data=data, param="MD")
 summary(aux.RLN)
 qqnorm(res(aux.RLN, type="mod.pearson"))
+#The log-normal model parameterized in the median also can be fitted using gamlss
+#gamlss(y~x1, sigma.formula=~x1, data=data, family=LNMD)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

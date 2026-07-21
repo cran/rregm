@@ -159,14 +159,14 @@ is the incomplete beta function ratio, \eqn{B_x(\alpha, \beta) = \int_{0}^{x}\om
 \eqn{B(\alpha, \beta) = \Gamma(\alpha)\Gamma(\beta)/\Gamma(\alpha + \beta)} is the beta function and
 \eqn{\Gamma(\alpha) = \int_{0}^{\infty}\omega^{\alpha-1}\textrm{e}^{-\omega}\textrm{d} \omega} is the gamma function.
 dRBE gives the density, pRBE gives the distribution function, qRBE gives the quantile function, and rRBE generates random deviates from the beta distribution with the specified
-parameterization. In addition, dBEXX, pBEXX, qBEXX and rBEXX also provides the equivalent functions for a specified parameterization for XX: AM (mean), GM (geometric mean), 
+parameterization. In addition, dBEXX, pBEXX, qBEXX and rBEXX also provide the equivalent functions for a specified parameterization for XX: AM (mean), GM (geometric mean), 
 HM (harmonic mean), MD (median) and MO (mode). For instance, dBEAM gives the density for the beta model parameterized in the mean, pBEGM gives the distribution function for the
 beta model parameterized in the geometric mean and so on. 
 Finally, the functions BEAM, BEGM, BEHM, BEMD and BEMO also provide a framework to fit models with \cite{gamlss}.
 }
 
 \value{
-an object of class "rregm" is returned. The object returned for this functions is a list containing the following
+an object of class "rregm" is returned. The object returned for these functions is a list containing the following
 components:
 \item{estimate}{A matrix containing the estimates and standard errors.}
 \item{logLik}{the log-likelihood function evaluated at the corresponding estimators.}
@@ -189,6 +189,12 @@ and robust beta regression model. Statistica Neerlandica, 79(2), e70007.
 \author{
 Diego Gallardo and Marcelo Bourguignon.
 }
+\seealso{
+fit.RBE,
+fit.RGA,
+fit.RBP,
+fit.RIG,
+fit.RLL}
 \examples{
 set.seed(2100)
 n=100; x1=rnorm(max(n)) ##drawing covariates, the same for mu and sigma

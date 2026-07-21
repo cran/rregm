@@ -119,7 +119,7 @@ where \eqn{0 < \mu < 1}, \eqn{\sigma > 0} and \eqn{\tau} is a constant. The foll
 
 - param="MO": \eqn{\tau=-1} and \eqn{\mu} represents the mode of the distribution.
 
-- param="MD": \eqn{\tau=1/2} and \eqn{\mu} represents the median of the distribution.
+- param="MD": \eqn{\tau=1/3} and \eqn{\mu} represents the median of the distribution.
 
 Suppose the central tendency and the concentration parameter of \eqn{Y_i} satisfies the following functional relations
 \deqn{
@@ -159,20 +159,20 @@ where \eqn{\Phi^{-1}(\cdot)} denotes the inverse of the cumulative distribution 
 \eqn{\gamma(a,z) = \int_{0}^{z}t^{a-1}\textrm{e}^{-t}\textrm{d}t} is the lower incomplete gamma
 function and \eqn{\Gamma(\alpha) = \int_{0}^{\infty}\omega^{\alpha-1}\textrm{e}^{-\omega}\textrm{d} \omega} is the gamma function.
 dRIG gives the density, pRIG gives the distribution function, qRIG gives the quantile function, and rRIG generates random deviates from the inverse gamma distribution with the specified
-parameterization. In addition, dIGXX, pIGXX, qIGXX and rIGXX also provides the equivalent functions for a specified parameterization for XX: AM (mean), GM (geometric mean), 
+parameterization. In addition, dIGXX, pIGXX, qIGXX and rIGXX also provide the equivalent functions for a specified parameterization for XX: AM (mean), GM (geometric mean), 
 HM (harmonic mean), MD (median) and MO (mode). For instance, dIGAM gives the density for the inverse gamma model parameterized in the mean, pIGGM gives the distribution function for the
 inverse gamma model parameterized in the geometric mean and so on. 
 Finally, the functions IGAM, IGGM, IGHM, IGMD and IGMO also provide a framework to fit models with \cite{gamlss}.
 }
 
 \value{
-an object of class "rregm" is returned. The object returned for this functions is a list containing the following
+an object of class "rregm" is returned. The object returned for these functions is a list containing the following
 components:
 \item{estimate}{A matrix containing the estimates and standard errors.}
 \item{logLik}{the log-likelihood function evaluated at the corresponding estimators.}
 \item{AIC}{the Akaike information criterion.}
 \item{BIC}{the Bayesian information criterion.}
-\item{tau1, tau2}{values for tau1 and tau2, depending on the considered parameterization.}
+\item{tau}{values for tau, depending on the considered parameterization.}
 \item{pearson.res}{Pearson's residuals.}
 \item{mod.pearson.res}{modified Pearson's residuals.}
 \item{quant.res}{quantile residuals.}
@@ -188,6 +188,13 @@ Chemometrics and Intelligent Laboratory Systems, 261, 105382.
 }
 \author{
 Diego Gallardo and Marcelo Bourguignon.
+}
+\seealso{
+fit.RBE,
+fit.RGA,
+fit.RBP,
+fit.RLN,
+fit.RLL
 }
 \examples{
 set.seed(2100)

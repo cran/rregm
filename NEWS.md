@@ -1,3 +1,7 @@
+### 1.3
+
+* functions dRLL, fit.RLL, pRLL, qRLL and rRLL related to the reparametrized log-logistic regression model were added
+
 ### 1.2
 
 * Added the functions `RBE.skovgaard()` and `RBE.predictive()` for higher-order likelihood inference and predictive shrinkage estimation

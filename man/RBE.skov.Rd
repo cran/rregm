@@ -31,7 +31,7 @@ harmonic mean.
 }
 \item{phi.test}{value to include for \eqn{\phi} in the null hypothesis. phi.test=NULL represents no hypothesis for \eqn{\phi}.
 }
-\item{train}{percentage of the observations used as train for the model. (0.7 by default)
+\item{train}{train proportion of observations used for model training. (0.7 by default)
 }
 }
 \details{

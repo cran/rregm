@@ -1,5 +1,30 @@
 \name{RBP}
 \alias{fit.RBP}
+\alias{BPAM}
+\alias{BPGM}
+\alias{BPHM}
+\alias{BPMD}
+\alias{BPMO}
+\alias{dBPAM}
+\alias{dBPGM}
+\alias{dBPHM}
+\alias{dBPMD}
+\alias{dBPMO}
+\alias{pBPAM}
+\alias{pBPGM}
+\alias{pBPHM}
+\alias{pBPMD}
+\alias{pBPMO}
+\alias{qBPAM}
+\alias{qBPGM}
+\alias{qBPHM}
+\alias{qBPMD}
+\alias{qBPMO}
+\alias{rBPAM}
+\alias{rBPGM}
+\alias{rBPHM}
+\alias{rBPMD}
+\alias{rBPMO}
 \alias{dRBP}
 \alias{pRBP}
 \alias{qRBP}
@@ -13,14 +38,43 @@ A set of functions related to the reparameterized beta prime regression model ba
 central tendency: mean, median, mode, geometric mean or harmonic mean. 
 }
 \usage{
-fit.RBP(formula = formula(data), sigma.formula=~1, data, param="AM")
+BPAM(mu.link = "log", sigma.link = "log") 
+BPGM(mu.link = "log", sigma.link = "log") 
+BPHM(mu.link = "log", sigma.link = "log") 
+BPMD(mu.link = "log", sigma.link = "log") 
+BPMO(mu.link = "log", sigma.link = "log") 
+dBPAM(x, mu = 1, sigma = 1.5, log = FALSE) 
+dBPGM(x, mu = 1, sigma = 1.5, log = FALSE) 
+dBPHM(x, mu = 1, sigma = 1.5, log = FALSE) 
+dBPMD(x, mu = 1, sigma = 1.5, log = FALSE) 
+dBPMO(x, mu = 1, sigma = 1.5, log = FALSE) 
 dRBP(x, mu=1, sigma=1.5, param="AM", log=FALSE)
-pRBP(q, mu=1, sigma=1.5, param="AM", lower.tail = TRUE, log.p = FALSE) 
-qRBP(p, mu=1, sigma=1.5, param="AM", lower.tail = TRUE, log.p = FALSE)
-rRBP(n, mu=1, sigma=1.5, param="AM")
+fit.RBP(formula = formula(data), sigma.formula=~1, data, param="AM")
+pBPAM(q, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+pBPGM(q, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+pBPHM(q, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+pBPMD(q, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+pBPMO(q, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE)
+pRBP(q, mu = 1, sigma=1.5, param="AM", lower.tail = TRUE, log.p = FALSE) 
+qBPAM(p, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+qBPGM(p, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+qBPHM(p, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+qBPMD(p, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+qBPMO(p, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 
+qRBP(p, mu = 1, sigma=1.5, param="AM", lower.tail = TRUE, log.p = FALSE)
+rBPAM(n, mu = 1, sigma = 1.5) 
+rBPGM(n, mu = 1, sigma = 1.5) 
+rBPHM(n, mu = 1, sigma = 1.5) 
+rBPMD(n, mu = 1, sigma = 1.5) 
+rBPMO(n, mu = 1, sigma = 1.5) 
+rRBP(n, mu = 1, sigma=1.5, param="AM")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
+\item{mu.link}{the mu link function with default log
+}
+\item{sigma.link}{the sigma link function with default log
+}
 \item{mu, sigma}{vector of parameter values
 }
   \item{formula}{
@@ -53,7 +107,7 @@ harmonic mean.
 \details{
 The parameterization for the reparameterized beta prime distribution is given by
 \deqn{
-f(x; \mu, \sigma) = \frac{x^{\mu\,\sigma + \tau_1 -1}(1 + x)^{-(\sigma(1+\mu) + \tau_1-\tau_2+1)}}{B(\mu\,\sigma + \tau_1, \sigma - \tau_2 + 1)}, \quad 0 < x < 1,
+f(x; \mu, \sigma) = \frac{x^{\mu\,\sigma + \tau_1 -1}(1 + x)^{-(\sigma(1+\mu) + \tau_1-\tau_2+1)}}{B(\mu\,\sigma + \tau_1, \sigma - \tau_2 + 1)}, \quad x>0,
 }
 where \eqn{\delta=\delta(\sigma)=(\sqrt{\sigma(\sigma+4)}+\sigma)/2}, \eqn{0 < \mu < 1}, \eqn{\sigma > 0} and \eqn{\tau} 
 is a constant. The following cases are highlighted:
@@ -103,12 +157,12 @@ where \eqn{\Phi^{-1}(\cdot)} denotes the inverse of the cumulative distribution 
 is the incomplete beta function ratio, \eqn{B_x(\alpha, \beta) = \int_{0}^{x}\omega^{\alpha-1}(1-\omega)^{\beta-1}\textrm{d} \omega} is the incomplete beta function,
 \eqn{B(\alpha, \beta) = \Gamma(\alpha)\Gamma(\beta)/\Gamma(\alpha + \beta)} is the beta function and
 \eqn{\Gamma(\alpha) = \int_{0}^{\infty}\omega^{\alpha-1}\textrm{e}^{-\omega}\textrm{d} \omega} is the gamma function.
-dRBP gives the density, pRBP gives the distribution function, qRBP gives the quantile function, and rRBP generates random deviates from the beta distribution with the specified
+dRBP gives the density, pRBP gives the distribution function, qRBP gives the quantile function, and rRBP generates random deviates from the beta prime distribution with the specified
 parameterization. 
 }
 
 \value{
-an object of class "rregm" is returned. The object returned for this functions is a list containing the following
+an object of class "rregm" is returned. The object returned for these functions is a list containing the following
 components:
 \item{estimate}{A matrix containing the estimates and standard errors.}
 \item{logLik}{the log-likelihood function evaluated at the corresponding estimators.}
@@ -131,6 +185,13 @@ and robust beta regression model. Statistica Neerlandica, 79(2), e70007.
 \author{
 Diego Gallardo and Marcelo Bourguignon.
 }
+\seealso{
+fit.RBE,
+fit.RGA,
+fit.RIG,
+fit.RLN,
+fit.RLL
+}
 \examples{
 set.seed(2100)
 n=100; x1=rnorm(max(n)) ##drawing covariates, the same for mu and sigma
@@ -140,6 +201,8 @@ data=list(y=y, x1=x1)
 aux.RBP=fit.RBP(y~x1, sigma.formula=~x1, data=data, param="MD")
 summary(aux.RBP)
 qqnorm(res(aux.RBP, type="mod.pearson"))
+#The beta prime model parameterized in the median also can be fitted using gamlss
+#gamlss(y~x1, sigma.formula=~x1, data=data, family=BPMD)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

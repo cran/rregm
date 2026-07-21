@@ -44,6 +44,7 @@ Supported regression models are:
 - reparametrized gamma
 - reparametrized beta prime
 - reparametrized inverse gamma
+- reparametrized log-normal
 }
 \value{
 A complete summary for the coefficients extracted from a "rregm" or "LRskov" object.  

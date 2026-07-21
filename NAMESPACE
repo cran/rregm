@@ -1,17 +1,37 @@
 export("BEAM", "BEGM", "BEHM", "BEMD", "BEMO",
+	"BPAM", "BPGM", "BPHM", "BPMD", "BPMO",
        "dBEAM", "dBEGM", "dBEHM", "dBEMD", "dBEMO",
+       "dBPAM", "dBPGM", "dBPHM", "dBPMD", "dBPMO",
+       "dGAM", "dGGM", "dGHM", "dGMD", "dGMO",
        "dIGAM", "dIGGM", "dIGHM", "dIGMD", "dIGMO", "dRBE", "dRBP",
-       "dRGA", "dRIG", "fit.RBE", "fit.RBP", "fit.RGA", "fit.RIG",
+       "dLL", "dLL2", "dLL3", "dLL4", "dLL5","dLL6",
+       "dLNAM", "dLNGM", "dLNHM", "dLNMD", "dLNMO", 
+       "dRGA", "dRIG", "dRLL", "dRLN", "fit.RBE", "fit.RBP", "fit.RGA", "fit.RIG", "fit.RLL","fit.RLN",
        "IGAM", "IGGM", "IGHM", "IGMD", "IGMO", "pBEAM",
+       "GAM", "GGM", "GHM", "GMD", "GMO",
+       "LL", "LL2", "LL3", "LL4", "LL5",
+       "LNAM", "LNGM", "LNHM", "LNMD", "LNMO",
        "pBEGM", "pBEHM", "pBEMD", "pBEMO", "pIGAM", "pIGGM", "pIGHM",
        "pIGMD", "pIGMO", "pRBE", "pRBP", "pRGA", "pRIG", 
+       "pBPAM", "pBPGM", "pBPHM", "pBPMD", "pBPMO",
+       "pGAM", "pGGM", "pGHM", "pGMD", "pGMO",
+       "pLL", "pLL2", "pLL3", "pLL4", "pLL5","pLL6",
+       "qBPAM", "qBPGM", "qBPHM", "qBPMD", "qBPMO",
+       "qGAM", "qGGM", "qGHM", "qGMD", "qGMO",
+       "qLL", "qLL2", "qLL3", "qLL4", "qLL5","qLL6",
+       "pLNAM", "pLNGM", "pLNHM", "pLNMD", "pLNMO","pRLL",
        "qBEAM", "qBEGM", "qBEHM", "qBEMD", "qBEMO", "qIGAM", "qIGGM",
-       "qIGHM", "qIGMD", "qIGMO", "qRBE", "qRBP", "qRGA", "qRIG",
+       "qIGHM", "qIGMD", "qIGMO", "qRBE", "qRBP", "qRGA", "qRIG","qRLL",
+       "qLNAM", "qLNGM", "qLNHM", "qLNMD", "qLNMO", 
        "rBEAM", "rBEGM", "rBEHM", "rBEMD", "rBEMO",
-       "rIGAM", "rIGGM", "rIGHM", "rIGMD", "rIGMO", "rRBE", "rRBP",
+       "rBPAM", "rBPGM", "rBPHM", "rBPMD", "rBPMO",
+       "rGAM", "rGGM", "rGHM", "rGMD", "rGMO",
+       "rIGAM", "rIGGM", "rIGHM", "rIGMD", "rIGMO", "rRBE", "rRBP","rRLL",
        "rRGA", "rRIG", "AIC.rregm", "BIC.rregm", "coef.rregm",
+       "rLL", "rLL2", "rLL3", "rLL4", "rLL5","rLL6",
+       "rLNAM", "rLNGM", "rLNHM", "rLNMD", "rLNMO",
 	"logLik.rregm", "print.rregm", "res", "summary.rregm",
-	"fit.RLN", "dRLN", "pRLN", "qRLN", "rRLN","RBE.predictive","RBE.skovgaard")
+	"dRLN", "pRLN", "qRLN", "rRLN","RBE.predictive","RBE.skovgaard")
 S3method(AIC, rregm)
 S3method(BIC, rregm)
 S3method(coef, rregm)
@@ -21,9 +41,9 @@ S3method(print, LRskov)
 S3method(summary, rregm)
 importFrom("stats", "AIC", "BIC", "coef", "dbeta", "dgamma", "lm", 
 	"logLik", "model.frame", "model.matrix", "nlminb", "optim",
-	"pbeta", "pgamma", "pnorm", "qbeta", "qgamma", "qnorm", "runif",
+	"pbeta", "pgamma", "pnorm", "qbeta", "qgamma", "qnorm", "runif","rbeta",
 	"plogis", "plnorm", "dlnorm", "rlnorm", "qlnorm","pchisq","as.formula")
-importFrom("gamlss.dist", "checklink", "GA","LOGNO")
+importFrom("gamlss.dist", "checklink", "GA","LOGNO","NO")
 importFrom("gamlss", "gamlss","stepGAICAll.A")
 importFrom("invgamma", "dinvgamma", "pinvgamma", "qinvgamma", "rinvgamma")
 importFrom("extraDistr", "dbetapr", "pbetapr", "qbetapr", "rbetapr")

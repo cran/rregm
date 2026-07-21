@@ -1,5 +1,30 @@
 \name{RGA}
 \alias{fit.RGA}
+\alias{GAM}
+\alias{GGM}
+\alias{GHM}
+\alias{GMD}
+\alias{GMO}
+\alias{dGAM}
+\alias{dGGM}
+\alias{dGHM}
+\alias{dGMD}
+\alias{dGMO}
+\alias{pGAM}
+\alias{pGGM}
+\alias{pGHM}
+\alias{pGMD}
+\alias{pGMO}
+\alias{qGAM}
+\alias{qGGM}
+\alias{qGHM}
+\alias{qGMD}
+\alias{qGMO}
+\alias{rGAM}
+\alias{rGGM}
+\alias{rGHM}
+\alias{rGMD}
+\alias{rGMO}
 \alias{dRGA}
 \alias{pRGA}
 \alias{qRGA}
@@ -13,14 +38,43 @@ A set of functions related to the reparameterized gamma regression model based o
 central tendency: mean, median, mode, geometric mean or harmonic mean. 
 }
 \usage{
-fit.RGA(formula = formula(data), sigma.formula=~1, data, param="AM")
+GAM(mu.link = "log", sigma.link = "log") 
+GGM(mu.link = "log", sigma.link = "log") 
+GHM(mu.link = "log", sigma.link = "log") 
+GMD(mu.link = "log", sigma.link = "log") 
+GMO(mu.link = "log", sigma.link = "log") 
+dGAM(x, mu = 1, sigma = 1, log = FALSE) 
+dGGM(x, mu = 1, sigma = 1, log = FALSE) 
+dGHM(x, mu = 1, sigma = 1, log = FALSE) 
+dGMD(x, mu = 1, sigma = 1, log = FALSE) 
+dGMO(x, mu = 1, sigma = 1, log = FALSE) 
 dRGA(x, mu=1, sigma=1, param="AM", log=FALSE)
+fit.RGA(formula = formula(data), sigma.formula=~1, data, param="AM")
+pGAM(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+pGGM(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+pGHM(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+pGMD(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+pGMO(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE)
 pRGA(q, mu=1, sigma=1, param="AM", lower.tail = TRUE, log.p = FALSE) 
+qGAM(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+qGGM(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+qGHM(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+qGMD(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
+qGMO(p, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
 qRGA(p, mu=1, sigma=1, param="AM", lower.tail = TRUE, log.p = FALSE)
+rGAM(n, mu = 1, sigma = 1) 
+rGGM(n, mu = 1, sigma = 1) 
+rGHM(n, mu = 1, sigma = 1) 
+rGMD(n, mu = 1, sigma = 1) 
+rGMO(n, mu = 1, sigma = 1) 
 rRGA(n, mu=1, sigma=1, param="AM")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
+\item{mu.link}{the mu link function with default log
+}
+\item{sigma.link}{the sigma link function with default log
+}
 \item{mu, sigma}{vector of parameter values
 }
   \item{formula}{
@@ -84,21 +138,21 @@ r_i=\frac{y_i-m_i}{s_i}, \quad i=1,\ldots,n,
 } 
 where 
 \deqn{
-m_i=\mu_i\left(1+\frac{\tau}{\xi(\sigma_i,\tau)}\right) \quad \mbox{and} \quad s_i=\frac{\mu}{\xi(\sigma_i,\tau)}\sqrt{\tau+\xi(\sigma_i,\tau)},
+m_i=\mu_i\left(1+\frac{\tau}{k(\sigma_i,\tau)}\right) \quad \mbox{and} \quad s_i=\frac{\mu}{k(\sigma_i,\tau)}\sqrt{\tau+k(\sigma_i,\tau)},
 }
-where \eqn{\xi(\sigma_i,\tau)=(\sqrt{\sigma_i(\sigma_i+4\tau)}+\sigma_i)/2}.
+where \eqn{k(\sigma_i,\tau)=(\sqrt{\sigma_i(\sigma_i+4\tau)}+\sigma_i)/2}.
 On the other hand, the modified Pearson's residuals are given by
 \deqn{
 r_i^*=\frac{\log(y_i)-m_i^*}{s_i^*}, \quad i=1,\ldots,n,
 } 
 where 
 \deqn{
-m_i^*=\psi(\tau+\xi(\sigma_i,\tau))+\log \mu_i-\log \xi(\sigma_i,\tau)) \quad \mbox{and} \quad s_i^*=\sqrt{\psi'(\tau+\xi(\sigma_i,\tau))},
+m_i^*=\psi(\tau+k(\sigma_i,\tau))+\log \mu_i-\log k(\sigma_i,\tau)) \quad \mbox{and} \quad s_i^*=\sqrt{\psi'(\tau+k(\sigma_i,\tau))},
 }
 with \eqn{\psi(\cdot)} and \eqn{\psi'(\cdot)} denoting the digamma and trigamma functions, respectively.
 Finally, the quantile residuals are given by
 \deqn{
-r_i^q=\Phi^{-1}\left(\frac{\gamma(\tau+\xi(\sigma_i,\tau),\xi(\sigma_i,\tau) y_i/ \mu_i}{\Gamma(\tau+\xi(\sigma_i,\tau))}\right), \quad i=1,\ldots,n,
+r_i^q=\Phi^{-1}\left(\frac{\gamma(\tau+k(\sigma_i,\tau),k(\sigma_i,\tau) y_i/ \mu_i}{\Gamma(\tau+k(\sigma_i,\tau))}\right), \quad i=1,\ldots,n,
 } 
 where \eqn{\Phi^{-1}(\cdot)} denotes the inverse of the cumulative distribution function for the standard normal model and
 \eqn{\gamma(a,z) = \int_{0}^{z}t^{a-1}\textrm{e}^{-t}\textrm{d}t} is the lower incomplete gamma
@@ -108,7 +162,7 @@ parameterization.
 }
 
 \value{
-an object of class "rregm" is returned. The object returned for this functions is a list containing the following
+an object of class "rregm" is returned. The object returned for these functions is a list containing the following
 components:
 \item{estimate}{A matrix containing the estimates and standard errors.}
 \item{logLik}{the log-likelihood function evaluated at the corresponding estimators.}
@@ -131,6 +185,13 @@ Chemometrics and Intelligent Laboratory Systems, 261, 105382.
 \author{
 Diego Gallardo and Marcelo Bourguignon.
 }
+\seealso{
+fit.RBE,
+fit.RBP,
+fit.RIG,
+fit.RLN,
+fit.RLL
+}
 \examples{
 set.seed(2100)
 n=100; x1=rnorm(max(n)) ##drawing covariates, the same for mu and sigma
@@ -140,6 +201,8 @@ data=list(y=y, x1=x1)
 aux.RGA=fit.RGA(y~x1, sigma.formula=~x1, data=data, param="MD")
 summary(aux.RGA)
 qqnorm(res(aux.RGA, type="mod.pearson"))
+#The gamma parameterized in the median also can be fitted using gamlss
+#gamlss(y~x1, sigma.formula=~x1, data=data, family=GMD)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

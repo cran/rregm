@@ -1,12 +1,30 @@
 fit.RLN<-function (formula = formula(data), sigma.formula = ~1, data, 
     param = "AM") 
 {
+    if (!inherits(formula, "formula")) {
+        if (inherits(formula, "data.frame")) 
+            warning("You gave a data.frame instead of a formula.")
+        stop("formula is not an object of type formula")
+    }
+    if (!inherits(sigma.formula, "formula")) {
+        if (inherits(sigma.formula, "data.frame")) 
+            warning("You gave a data.frame instead of a formula for sigma.")
+        stop("sigma.formula is not an object of type formula")
+    }
+    if (missing(formula)) 
+        stop("Missing formula")
+    if (missing(data)) 
+        stop("Missing data")
     if (!any(param == c("AM", "GM", "HM", "MO", "MD"))) 
         stop("param is not recognized")
     tau = switch(param, AM = 1/2, GM = 0, MD = 0, MO = -1, HM = -1/2)
-    X <- model.matrix(formula, data)
-    Z <- model.matrix(sigma.formula, data)
     y <- model.frame(formula, data)[[1]]
+    X <- model.matrix(formula, data)
+    Z <- matrix(1, nrow = length(y))
+	colnames(Z)<-"(Intercept)"
+    if (sigma.formula != ~1) {
+        Z <- model.matrix(sigma.formula)
+    }
     quiet <- function(x) {
         sink(tempfile())
         on.exit(sink())
@@ -19,12 +37,22 @@ fit.RLN<-function (formula = formula(data), sigma.formula = ~1, data,
         nu <- psi[r1 + 1:r2]
         log.mu <- x %*% beta
         sigma <- exp(z %*% nu)
-        phi<-sigma^0.5
-        theta=log.mu-tau*phi
+        phi <- sigma^0.5
+        theta = log.mu - tau * phi
         -sum(dlnorm(y, meanlog = theta, sdlog = phi, log = TRUE))
     }
-    aux1 <- quiet(gamlss(y ~ X[, -1], sigma.formula = ~Z[, -1], 
+	aux1 <- quiet(gamlss(y ~ 1, sigma.formula = ~1, 
         data = data, family = LOGNO))
+	if(ncol(X)>1)
+	{
+    aux1 <- quiet(gamlss(y ~ X[, -1], sigma.formula = ~1, 
+        data = data, family = LOGNO))
+	if(ncol(Z)>1)
+	{
+    aux1 <- quiet(gamlss(y ~ X[, -1,drop=FALSE], sigma.formula = ~Z[, -1,drop=FALSE], 
+        data = data, family = LOGNO))
+	}
+	}
     inits <- c(aux1$mu.coefficients, aux1$sigma.coefficients)
     maxi <- optim(inits, llike.RLN, y = y, x = X, z = Z, tau = tau, 
         hessian = TRUE, control = list(maxit = 1e+05))
@@ -35,13 +63,12 @@ fit.RLN<-function (formula = formula(data), sigma.formula = ~1, data,
     colnames(aa) = c("Estimate", "Std. Error")
     log.mu <- X %*% aa[1:ncol(X), 1]
     sigma <- exp(Z %*% aa[ncol(X) + 1:ncol(Z), 1])
-    phi<-sigma^0.5
-    theta=log.mu-tau*phi
-
+    phi <- sigma^0.5
+    theta = log.mu - tau * phi
     mean.log <- theta
     sd.log <- phi
-    mean.y <- exp(theta+phi^2/2)
-	sd.y <- sqrt((exp(phi^2)-1)*exp(2*theta+phi^2))
+    mean.y <- exp(theta + phi^2/2)
+    sd.y <- sqrt((exp(phi^2) - 1) * exp(2 * theta + phi^2))
     pearson <- (y - mean.y)/sd.y
     mod.pearson <- (log(y) - mean.log)/sd.log
     quant = (log(y) - theta)/phi
@@ -54,3 +81,4 @@ fit.RLN<-function (formula = formula(data), sigma.formula = ~1, data,
     class(val) <- "rregm"
     val
 }
+
