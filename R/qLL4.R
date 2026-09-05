@@ -2,6 +2,10 @@ qLL4 <- function(p, mu=1, sigma=1.5,
                  lower.tail=TRUE,
                  log.p=FALSE)
 {
+if (any(mu <= 0)) 
+        stop("mu must be positive")
+    if (any(sigma <= 1)) 
+        stop("sigma must be greater than 1")
 
     if(log.p)
         p <- exp(p)

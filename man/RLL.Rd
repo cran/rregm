@@ -1,5 +1,6 @@
 \name{RLL}
 \alias{fit.RLL}
+\alias{fit.RLL.cens}
 \alias{LL}
 \alias{LL1}
 \alias{LL2}
@@ -57,6 +58,7 @@ dLL5(x, mu = 1, sigma = 1.5, log = FALSE)
 dLL6(x, mu = 1, sigma = 1.5, nu=0.5, log = FALSE)
 dRLL(x, mu=1, sigma=1.5, nu=0.5, param="LL", log=FALSE)
 fit.RLL(formula = formula(data), sigma.formula = ~1, data, param = "LL", nu=0.5)
+fit.RLL.cens(formula = formula(data), sigma.formula = ~1, data, param = "LL", nu = 0.5) 
 pLL(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
 pLL2(q, mu = 1, sigma = 1, lower.tail = TRUE, log.p = FALSE) 
 pLL3(q, mu = 1, sigma = 1.5, lower.tail = TRUE, log.p = FALSE) 

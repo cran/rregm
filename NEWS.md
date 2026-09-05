@@ -1,3 +1,7 @@
+### 1.4
+
+* functions fit.RLL.cens was added
+
 ### 1.3
 
 * functions dRLL, fit.RLL, pRLL, qRLL and rRLL related to the reparametrized log-logistic regression model were added

@@ -4,6 +4,11 @@ pLL4 <- function(q, mu=1, sigma=1.5,
 {
 
     lambda <- mu*(pi/sigma)/sin(pi/sigma)
+if (any(mu <= 0)) 
+        stop("mu must be positive")
+    if (any(sigma <= 1)) 
+        stop("sigma must be greater than 1")
+
 
     z <- (q/lambda)^sigma
 
